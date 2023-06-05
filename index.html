@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="strict-origin" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,viewport-fit=cover,shrink-to-fit=no">
+    <title>Photos</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="./assets/img/favicon.png">
+    <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/style.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/style.css">
+  </head>
+  
+  <body>
+    <div id="app">
+       <div  id="top" style="top:0px;visibility: hidden;position: absolute;"></div>
+      <header>
+        <div class="header">
+          <img src="./assets/img/favicon.png">
+          <h4>
+            <strong>{{desc}}</strong>
+          </h4>
+          <ul>
+            <li v-for="n in settings.nav">
+              <a :href="n.url">{{n.title}}</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+     
+      <div class="box" >
+        <div v-for="item in items">
+          <template v-for="obj in item.data">
+            <template v-if="obj.show == undefined || obj.show == true">
+              <div class="item" v-for="pic in obj.data">
+                <div class="img-div">
+                    <a v-if="pic.linktype == undefined || pic.linktype == 'local'" class="fancybox" rel="group" :href="'data/'+item.page+'/'+obj.id+'/'+pic.url" data-fancybox="group" :data-caption="obj.text.content">
+                      <template v-if="pic.datatype == 'img'">
+                         <img :src="'data/'+item.page+'/'+obj.id+'/' + ( pic.url.indexOf('?') == -1 ? pic.url + '?' :  pic.url + '&' ) + settings.imgparam" />
+                          <div class="img-div-tips">
+                            <span v-for="tag in obj.tags">#{{tag}} &nbsp;</span>
+                          </div>
+                      </template>
+                       <template v-if="pic.datatype == 'video'">
+                         <video controls="controls" preload="metadata" :poster="pic.poster" :src="'data/'+item.page+'/'+obj.id+'/'+pic.url">
+                         </video>
+                      </template>
+                   
+                  </a>
+                  <a v-else-if="pic.linktype == 'remote'" class="fancybox" rel="group" :href="pic.url" data-fancybox="group" :data-caption="obj.text.content">
+                     <template v-if="pic.datatype == 'img'">
+                       <img :src="(pic.url.indexOf('?') == -1 ? pic.url + '?' :  pic.url + '&') + settings.imgparam" />
+                       <div class="img-div-tips">
+                        <span v-for="tag in obj.tags">#{{tag}} &nbsp;</span>
+                      </div>
+                      </template>
+                      <template v-if="pic.datatype == 'video'">
+                        <video controls="controls" preload="metadata"  :poster="pic.poster" :src="pic.url">
+                        </video>
+                      </template>
+                    
+                  </a>
+                </div>
+                <div class="text">
+                  <div v-show="obj.text !='' && obj.text != undefined">
+                    <div v-if="obj.text.type == 'html' ">{{obj.time}} {{  obj.user  }} 拍摄于 {{obj.location}} |
+                      <span v-html="obj.text.content"></span>
+                    </div>
+                    <div v-else>{{obj.time}} {{  obj.user }} 拍摄于{{obj.location}} |
+                      <span>{{obj.text.content}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </template>
+        </div>
+      </div>
+      <a id="back-top-button" href="#top" class="backbutton">↑</a>
+      <div class="foot-menu" v-show="loadmore" style="display:none;">
+        <button id="buton" @click="load" class="loadbtn">{{loadbtn}}</button>
+      </div>
+    </div>
+    <script type="application/javascript" src="./assets/js/jquery.min.js">
+    </script>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.js" type="application/javascript">
+    </script>
+    <script type="text/javascript" src="./assets/js/vue.global.js">
+    </script>
+    <script type="text/javascript" src="./assets/js/index.js">
+    </script>
+  </body>
+
+</html>

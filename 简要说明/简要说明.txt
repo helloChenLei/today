@@ -1,0 +1,39 @@
+photos
+├── assets
+│   ├── css
+│   │   └── style.css
+│   ├── img
+│   │   ├── favicon.ico
+│   │   └── favicon.png
+│   └── js
+│       ├── index.js
+│       ├── jquery.min.js
+│       └── vue.global.js 
+├── data
+│   ├── 1 #该层级代表页码，此为1，代表第1页，页码严格递增，不能间隔跳跃
+│   │   ├── 1 #该层级代表id号，代表data.json中的id为1的数据，此处即为，第1页下data.json中id为1的真实资源处；id可以跳跃，只要和当前页下的data.json文件中的某条记录匹配上即可
+│   │   │   ├── 1.jpg
+│   │   │   ├── 20230529173722.png
+│   │   │   └── aaa.png
+│   │   ├── 2  #该层级代表id号，代表data.json中的id为2的数据，此处即为，第1页下data.json中id为2的真实资源处；id可以跳跃，只要和当前页下的data.json文件中的某条记录匹配上即可
+│   │   │   ├── haha.mp4
+│   │   │   └── sddsd.png
+│   │   ├── 3  #该层级代表id号，代表data.json中的id为3的数据，此处即为，第1页下data.json中id为3的真实资源处；id可以跳跃，只要和当前页下的data.json文件中的某条记录匹配上即可
+│   │   │   ├── 20230528161636.png
+│   │   │   ├── 20230528163637.png
+│   │   │   ├── 20230528164053.png
+│   │   │   └── 20230528164236.png
+│   │   └── data.json #第1页的数据库
+│   └── 2 #该层级代表页码，此为2，代表第2页，页码严格递增，不能间隔跳跃
+│       ├── 4  #该层级代表id号，代表data.json中的id为4的数据，此处即为，第2页下data.json中id为4的真实资源处；id可以跳跃，只要和当前页下的data.json文件中的某条记录匹配上即可
+│       │   ├── 1.jpg
+│       │   ├── 20230529173722.png
+│       │   └── aaa.png
+│       ├── 5 #该层级代表，id号代表data.json中的id为5的数据，此处即为，第2页下data.json中id为5的真实资源处；id可以跳跃，只要和当前页下的data.json文件中的某条记录匹配上即可
+│       │   ├── haha.mp4
+│       │   └── sddsd.png
+│       └── data.json #第2页的数据库
+├── index.html 
+├── settings.json #配置文件，其中newestPageNum代表当前最新的页码是多少，如当前文件夹最新页码为2，该值即为2
+
+
